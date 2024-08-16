@@ -6,9 +6,9 @@ type Props = {
 
 function Boton(props : Props) {
     return(
-        <h3 className='boton'>
+        <h4 className='boton'>
             {props.title}
-        </h3>
+        </h4>
     );
 }
 

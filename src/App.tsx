@@ -9,9 +9,15 @@ function App() {
 
   return (
     <>
-      <div>        
-        <Boton title='home'/>
-        <Boton title='tendencias'/>           
+      <div className='barra-arriba'>
+        <a href="#">
+          <Boton title='home'/>          
+        </a>   
+        <a href="#">
+          <Boton title='tendencias'/>
+        </a> 
+            
+                   
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
