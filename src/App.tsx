@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Boton from './barra-izquierda'
+import ListenAgainSeccion from './componentes/listen-again'
 import './App.css'
 
 function App() {
@@ -15,9 +16,7 @@ function App() {
         </a>   
         <a href="#">
           <Boton title='tendencias'/>
-        </a> 
-            
-                   
+        </a>         
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -25,6 +24,7 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
+      <ListenAgainSeccion />
       <h1>Vite + React + Alejandro y alguien mas</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>

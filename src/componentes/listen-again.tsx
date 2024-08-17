@@ -1,39 +1,16 @@
-type Prop = {
-    img?: string;
-    cancion?: string;    
-    artista?: string;
-    cantidadCanciones?: string;
-}
+import ElementosContainer, { Prop } from './elementos-contenedor.tsx';
+import DetallesItem from './detalles-elementos.tsx';
 
-function ListenAgainContainer({img, cancion, artista, cantidadCanciones}: Prop) {
-    <article>
-        {img ? (
-            <img
-            className="avatar"
-            src={img}
-            alt="Imagen"
-            width={70}
-            height={70}
-            />
-            ) : null}
-            {cancion}
-            <div className='contenedor-elementos'>
-                {artista}'.'{cantidadCanciones}
-            </div>
-    </article>
-
-}
-
-function ListenAgain() {
+function ListenAgainSeccion() {
     return(
         <>
-            
-            <ListenAgainContainer  img="https://i.imgur.com/qp4mbtj.jpeg" />
-                 
-            
+            <ElementosContainer img="https://i.imgur.com/qp4mbtj.jpeg">
+                <DetallesItem cancion='Playlist' />
+                <DetallesItem content='playlist.song' />
+            </ElementosContainer>
+
         </>
-        
     );
 }
 
-export default ListenAgain;
+export default ListenAgainSeccion;
