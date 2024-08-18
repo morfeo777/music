@@ -7,19 +7,22 @@ export type Prop = {
 }
 
 function ElementosContainer({img, children}: Prop) {
+    return(
     <article>
         {img ? (
             <img
             className="avatar"
             src={img}
             alt="Imagen"
-            width={70}
-            height={70}
+            width={210}
+            height={170}
             />
             ) : null}
         {children}    
                         
     </article>
+    );
+    
 }
 
 

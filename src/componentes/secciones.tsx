@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import '../assets/componentes.css';
 
 type Props = {
     img: string;
@@ -9,7 +10,7 @@ type Props = {
 
 function Seccion({ img, tituloSeccion, titulo, children }: Props) {
     return(
-        <div>
+        <div className='contenedor-elementos'>
           {img ? (
             <img
                 className="avatar"
@@ -19,12 +20,14 @@ function Seccion({ img, tituloSeccion, titulo, children }: Props) {
                 height={21}
                 />
                 ) : null}
-          {tituloSeccion ? (
-            <h4>{tituloSeccion}</h4>
-          ) : null}
-          {titulo ? (
-            <h3>{titulo}</h3>
-          ) : null}
+          <p>
+            {tituloSeccion ? (
+            <div>{tituloSeccion}</div>
+            ) : null}
+            {titulo ? (
+              <h3>{titulo}</h3>
+            ) : null}
+          </p>
           {children}            
         </div>
     );

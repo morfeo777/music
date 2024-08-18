@@ -3,6 +3,8 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import Boton from './barra-izquierda'
 import ListenAgainSeccion from './componentes/listen-again'
+import TitulosListenAgain from './componentes/titulos-listen-again'
+import Reproductor from './componentes/barra-reproductor'
 import './App.css'
 
 function App() {
@@ -16,16 +18,11 @@ function App() {
         </a>   
         <a href="#">
           <Boton title='tendencias'/>
-        </a>         
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
+      <TitulosListenAgain />
       <ListenAgainSeccion />
-      <h1>Vite + React + Alejandro y alguien mas</h1>
+      <Reproductor />      
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
