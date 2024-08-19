@@ -1,0 +1,9 @@
+.titulos-quick-picks {    
+    display: block;
+    margin-left: 0;
+}
+
+.quick-picks {
+    display: flex;
+    gap: 7px;
+  }

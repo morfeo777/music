@@ -16,13 +16,13 @@ function Seccion({ img, tituloSeccion, titulo, children }: Props) {
                 className="avatar"
                 src={img}
                 alt="Imagen"
-                width={52}
-                height={52}
+                width={77}
+                height={77}
                 />
                 ) : null}
           <p>
             {tituloSeccion ? (
-            <div>{tituloSeccion}</div>
+            <div className='titulos'>{tituloSeccion}</div>
             ) : null}
             {titulo ? (
               <h3>{titulo}</h3>
