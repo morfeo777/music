@@ -4,6 +4,10 @@ import viteLogo from '/vite.svg'
 import Boton from './barra-izquierda'
 import ListenAgainSeccion from './componentes/listen-again'
 import TitulosListenAgain from './componentes/titulos-listen-again'
+import TitulosRecommendedAlbums from './componentes/titulos-recommended-albums'
+import RecommendedAlbums from './componentes/recommended-albums'
+import TitulosSimilarToAkon from './componentes/titulos-similar-to-akon'
+import SimilarToAkon from './componentes/similar-to-akon'
 import Reproductor from './componentes/barra-reproductor'
 import './App.css'
 
@@ -22,6 +26,10 @@ function App() {
       </div>
       <TitulosListenAgain />
       <ListenAgainSeccion />
+      <TitulosRecommendedAlbums />
+      <RecommendedAlbums />
+      <TitulosSimilarToAkon />
+      <SimilarToAkon />
       <Reproductor />      
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>

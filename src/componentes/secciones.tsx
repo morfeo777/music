@@ -16,8 +16,8 @@ function Seccion({ img, tituloSeccion, titulo, children }: Props) {
                 className="avatar"
                 src={img}
                 alt="Imagen"
-                width={21}
-                height={21}
+                width={52}
+                height={52}
                 />
                 ) : null}
           <p>

@@ -3,8 +3,8 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 52px;
-    background-color: red;
+    height: 3.5rem;
+    background-color: rgb(8, 8, 8);
     color: white;
     text-align: center;
   }
@@ -26,10 +26,12 @@
 }
 .info-barra-abajo {
   position: center;
+  margin-left: 25rem;
   display: flex;
   gap: 7px;
 } 
 .titulos-barra-abajo {
+  margin-left: 1rem;
   display: block;
 }
 .iconos {

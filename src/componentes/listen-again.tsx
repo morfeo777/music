@@ -15,11 +15,11 @@ function ListenAgainSeccion() {
                 <DetallesItem cancion='Song Title' />
                 <DetallesItem content='Channel/Artist.540M views' />
             </ElementosContainer>
-            <ElementosContainer img="https://thumbs2.imgbox.com/8c/91/Sa9nDW0Z_t.png">
+            <ElementosContainer img="https://images2.imgbox.com/8c/91/Sa9nDW0Z_o.png">
                 <DetallesItem cancion='Playlist Nane' />
                 <DetallesItem content='Artist Name.68 songs' />
             </ElementosContainer>
-            <ElementosContainer img="https://thumbs2.imgbox.com/d1/9b/Wb1rnJMW_t.png">
+            <ElementosContainer img="https://images2.imgbox.com/d1/9b/Wb1rnJMW_o.png">
                 <DetallesItem cancion='Playlist Nane' />
                 <DetallesItem content='Artist Name.68 songs' />
             </ElementosContainer>
