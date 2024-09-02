@@ -11,7 +11,26 @@ import './assets/barra-izquierda-estilos.css';
 import './assets/sidebar.css';
 import './App.css'
 
+/* Imagenes en Servidor para hacer Pruebas
 
+https://images2.imgbox.com/36/db/DwVzTM6J_o.png
+
+https://images2.imgbox.com/c6/52/TMHd2xoo_o.png[/IMG][/URL]
+
+https://images2.imgbox.com/8c/91/Sa9nDW0Z_o.png
+
+https://images2.imgbox.com/d1/9b/Wb1rnJMW_o.png
+
+https://images2.imgbox.com/dc/cf/MEu5p3iJ_o.png
+
+https://images2.imgbox.com/29/ed/A83QF6U1_o.png
+
+https://images2.imgbox.com/86/33/uHQM3OUV_o.png
+
+https://images2.imgbox.com/3a/fa/zc2jEw6s_o.png
+
+https://images2.imgbox.com/74/b8/DsvSf2rI_o.png
+ */
 export default function App() {
   const [playlist, setPlaylist] = useState<string>('');
   const [home, setHome] = useState<boolean>(true);
