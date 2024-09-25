@@ -15,7 +15,7 @@ import './App.css'
 
 https://images2.imgbox.com/36/db/DwVzTM6J_o.png
 
-https://images2.imgbox.com/c6/52/TMHd2xoo_o.png[/IMG][/URL]
+https://images2.imgbox.com/c6/52/TMHd2xoo_o.png
 
 https://images2.imgbox.com/8c/91/Sa9nDW0Z_o.png
 
@@ -70,7 +70,7 @@ export default function App() {
 
       />) }
 
-      <Reproductor />      
+           
     </>
   )
 }

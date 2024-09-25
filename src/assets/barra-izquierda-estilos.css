@@ -18,5 +18,47 @@
 }
 .elementos_grupo {
   display: flex;
-  gap: 3rem;
+  gap: 2.5rem;
+
+   /* BOTH of the following are required for text-overflow */
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   overflow-wrap: break-word;
+}
+
+.elementos_grupo_redondo {
+  display: flex;
+  gap: 2.5rem;
+
+   /* BOTH of the following are required for text-overflow */
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   overflow-wrap: break-word;
+}
+/*.elementos_grupo_redondo .img {
+  img {
+    border-radius: 50%;
+  }
+}*/
+.avatar {
+  border-radius: 50%;
+}
+.overflow-visible {
+  white-space: initial;
+}
+
+.overflow-clip {
+  text-overflow: clip;
+}
+
+.overflow-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.overflow-string {
+  /* Not supported in most browsers,
+     see the 'Browser compatibility' section below */
+  text-overflow: " [..]";
 }

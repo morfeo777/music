@@ -1,9 +1,18 @@
+import { useEffect, useState, Dispatch } from 'react';
 import ElementosContainer, { Prop } from './elementos-contenedor.tsx';
 import DetallesItem from './detalles-elementos.tsx';
 import '../assets/barra-izquierda-estilos.css';
-import AudioBoom from './pedir_audioboom.tsx';
+import {AudioBoom2} from './pedir_audioboom2.tsx';
+
 
 function ListenAgainSeccion() {
+    /*const [audio_clips, setAudioClips] = useState([]);*/
+    /*const data = useState(AudioBoom());*/
+    /*const { data, error, isLoaded } = AudioBoom2();*/
+    const {error ,isLoaded ,audio_clips  } = AudioBoom2(
+        "https://api.audioboom.com/audio_clips"
+      );
+
 
     type LogoImage = {        
         original: string        
@@ -32,7 +41,11 @@ function ListenAgainSeccion() {
         urls: Urls;
     };
 
-    const audio_clips = AudioBoom();
+    /*setAudioClips(AudioBoom());*/ 
+    
+    /*const { data } = AudioBoom();*/
+
+    /*const audio_clips_boom = AudioBoom();*/
 
     return(
         <>
@@ -41,18 +54,7 @@ function ListenAgainSeccion() {
                 <DetallesItem cancion='Playlist Nane' />
                 <DetallesItem content='Artist Name.68 songs' />
             </ElementosContainer>
-            <ElementosContainer img="https://images2.imgbox.com/c6/52/TMHd2xoo_o.png">
-                <DetallesItem cancion='Song Title' />
-                <DetallesItem content='Channel/Artist.540M views' />
-            </ElementosContainer>
-            <ElementosContainer img="https://images2.imgbox.com/8c/91/Sa9nDW0Z_o.png">
-                <DetallesItem cancion='Playlist Nane' />
-                <DetallesItem content='Artist Name.68 songs' />
-            </ElementosContainer>
-            <ElementosContainer img="https://images2.imgbox.com/d1/9b/Wb1rnJMW_o.png">
-                <DetallesItem cancion='Playlist Nane' />
-                <DetallesItem content='Artist Name.68 songs' />
-            </ElementosContainer>
+            {audio_clips.map((audio_clip: AudioClips) => {})}
             
         </div>
             

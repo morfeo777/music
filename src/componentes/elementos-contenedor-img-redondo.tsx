@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import '../assets/barra-izquierda-estilos.css';
 
 export type Prop = {
     img?: string;
@@ -6,15 +7,15 @@ export type Prop = {
     
 }
 
-function ElementosContainer({img, children}: Prop) {
+function ElementosContainerImgRedondo({img, children}: Prop) {
     return(
     <article>
         {img ? (
             <img
-            
+            className="avatar"
             src={img}
             alt="Imagen"
-            width={210}
+            width={197}
             height={170}
             />
             ) : null}
@@ -27,4 +28,4 @@ function ElementosContainer({img, children}: Prop) {
 
 
 
-export default ElementosContainer;
+export default ElementosContainerImgRedondo;

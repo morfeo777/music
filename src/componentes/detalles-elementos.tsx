@@ -6,9 +6,9 @@ type detallesItemProps = {
   };
   function DetallesItem({ cancion, content }: detallesItemProps) {
     return (
-      <article>
+      <article >
         {cancion ? <p>{cancion}</p> : null}
-        {content ? <p>{content}</p> : null}
+        {content ? <p >{content}</p> : null}
       </article>
     );
   }

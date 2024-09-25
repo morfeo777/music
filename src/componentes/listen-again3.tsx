@@ -1,9 +1,13 @@
+import { useEffect, useState, Dispatch } from 'react';
 import ElementosContainer, { Prop } from './elementos-contenedor.tsx';
 import DetallesItem from './detalles-elementos.tsx';
 import '../assets/barra-izquierda-estilos.css';
-import AudioBoom from './pedir_audioboom.tsx';
+import {AudioBoom2} from './pedir_audioboom2.tsx';
 
-function ListenAgainSeccion() {
+const API_URL = 'https://rickandmortyapi.com/api/character?page=1';
+
+
+export default function ListenAgainSeccion() {       
 
     type LogoImage = {        
         original: string        
@@ -32,7 +36,26 @@ function ListenAgainSeccion() {
         urls: Urls;
     };
 
-    const audio_clips = AudioBoom();
+    const [audio_clips, setAudioClips] = useState(Array<AudioClips>);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [error, setError] = useState('');
+
+    /*const [personajes, setPersonajes] = useState(Array<Personaje>);*/
+
+    useEffect(() => {
+        setIsLoaded(true);
+        fetch(API_URL)
+          .then((res) => res.json())
+          .then((data) => {
+            setAudioClips(data.results);
+            setIsLoaded(false);
+          })
+          .catch(() => {
+            setError('Hubo un error');
+          });
+      }, []);
+
+    
 
     return(
         <>
@@ -41,18 +64,7 @@ function ListenAgainSeccion() {
                 <DetallesItem cancion='Playlist Nane' />
                 <DetallesItem content='Artist Name.68 songs' />
             </ElementosContainer>
-            <ElementosContainer img="https://images2.imgbox.com/c6/52/TMHd2xoo_o.png">
-                <DetallesItem cancion='Song Title' />
-                <DetallesItem content='Channel/Artist.540M views' />
-            </ElementosContainer>
-            <ElementosContainer img="https://images2.imgbox.com/8c/91/Sa9nDW0Z_o.png">
-                <DetallesItem cancion='Playlist Nane' />
-                <DetallesItem content='Artist Name.68 songs' />
-            </ElementosContainer>
-            <ElementosContainer img="https://images2.imgbox.com/d1/9b/Wb1rnJMW_o.png">
-                <DetallesItem cancion='Playlist Nane' />
-                <DetallesItem content='Artist Name.68 songs' />
-            </ElementosContainer>
+            {audio_clips.map((audio_clip: AudioClips) => {})}
             
         </div>
             
@@ -61,4 +73,4 @@ function ListenAgainSeccion() {
     );
 }
 
-export default ListenAgainSeccion;
+/*export default ListenAgainSeccion;*/

@@ -1,3 +1,4 @@
+import { useRef, useState } from 'react';
 import '../assets/barra-abajo.css';
 import { AiFillStepBackward } from "react-icons/ai";
 import { AiFillStepForward } from "react-icons/ai";
@@ -9,8 +10,48 @@ export type Prop = {
     titulo?: string;
     artista?: string;
   };
+
+  const AUDIO_URL = 'https://audioboom.com/posts/8562837.mp3';
   
   function BarraAbajo({ img, titulo, artista }: Prop) {
+
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [isPaused, setIsPaused] = useState(false);
+    const audioRef = useRef<HTMLAudioElement | null>(null);
+
+    function handleClick() {
+      const nextIsPlaying = !isPlaying;
+      setIsPlaying(nextIsPlaying);
+      if (!isPlaying) {
+        setIsPlaying(true);
+        setIsPaused(false);
+        audioRef.current?.play();
+      } else {
+        setIsPlaying(false);
+        setIsPaused(true);
+        audioRef.current?.pause();
+      }
+    }
+  
+    function reset() {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+        setIsPlaying(false);
+        /*const nextIsPlaying = !isPlaying;
+        setIsPlaying(nextIsPlaying);
+        if (!isPlaying) {
+          setIsPlaying(true);
+          setIsPaused(false);     
+        } else {
+          setIsPlaying(false);
+          setIsPaused(true);      
+        }*/
+      }
+    }
+
+
+
     return (
       <div className='footer'>
         <div className='barra-abajo'>          
@@ -24,15 +65,29 @@ export type Prop = {
                 height={37}
                 />
             </a>
-            <a href="#">
-            <img
-                className="cancion"
-                src= "https://images2.imgbox.com/df/cc/v6OqPTZp_o.png"
-                alt="Imagen"
-                width={37}
-                height={37}
-                />
-            </a>
+            {isPlaying ? 
+                <a href="#"  onClick={handleClick}>
+                    <img
+                      className="cancion"
+                      src= "https://images2.imgbox.com/49/02/pSDOPEuz_o.png"
+                      alt="Pause"
+                      width={37}
+                      height={37}
+                    />
+                </a>
+            
+            : 
+                <a href="#"  onClick={handleClick}>
+                  <img
+                    className="cancion"
+                    src= "https://images2.imgbox.com/df/cc/v6OqPTZp_o.png"
+                    alt="Play"
+                    width={37}
+                    height={37}
+                  />
+                </a>
+            }
+           
             <a href="#">
             <img
                 className="cancion"
@@ -42,6 +97,21 @@ export type Prop = {
                 height={37}
                 />
             </a>
+            
+            <a href="#" onClick={reset}>
+                <img
+                    className="cancion"
+                    src= "https://images2.imgbox.com/bb/28/hnGwsni3_o.png"
+                    alt="stop"
+                    width={34}
+                    height={34}
+                    />
+                </a>       
+            
+            
+            <audio ref={audioRef}>
+              <source src={AUDIO_URL} type="audio/mpeg" />
+            </audio>
             </div>  
           
           <div className='info-barra-abajo'>
