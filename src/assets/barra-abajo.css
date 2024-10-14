@@ -38,3 +38,7 @@
   size: 100rem;
   font-size: large;
 }
+.close_boton {
+  position: fixed;
+  right: 1rem;
+}

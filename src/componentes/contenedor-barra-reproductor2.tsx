@@ -17,7 +17,7 @@ export type Prop = {
 
   const AUDIO_URL = 'https://audioboom.com/posts/8562837.mp3';
   
-  function BarraAbajo({ img, titulo, artista,  audioHighMp3, reproducir}: Prop) {
+  function BarraAbajo2({ img, titulo, artista,  audioHighMp3, reproducir}: Prop) {
 
     const [isPlaying, setIsPlaying] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
@@ -98,7 +98,7 @@ export type Prop = {
     });
 
     if(reproducir) {
-      /*setIsPlaying(true);*/
+      /*handleClick;*/
       alert('Entro en Reproducir');
     }
 
@@ -197,4 +197,4 @@ export type Prop = {
     );
   }
   
-  export default BarraAbajo;
+  export default BarraAbajo2;

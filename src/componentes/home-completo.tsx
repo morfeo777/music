@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import ListenAgainSeccion from '../componentes/listen-again'
 import TitulosListenAgain from '../componentes/titulos-listen-again'
 import TitulosQuickPicks from '../componentes/titulos-quick-picks'
@@ -12,10 +13,16 @@ import PeticionQuickPicks from './peticion-quick-picks'
 import PeticionRecomendedAlbums from './peticion-recomended-albums'
 import PeticionSimilarToAkon from './peticion-similar-akon'
 import Reproductor from './barra-reproductor'
+import PeticionListenAgain2 from "./peticion-listen-again2.tsx";
 import '../assets/barra-izquierda-estilos.css';
+import { AudioContext } from '../App.tsx';
 
-
+/*
+*/
 export default function Home() {
+
+   const audioContext = useContext(AudioContext);
+   const mostrarReproductor = audioContext?.reproducir;
     
     return(
         <>
@@ -51,7 +58,8 @@ export default function Home() {
             <TitulosSimilarToAkon />
             <PeticionSimilarToAkon />
             <SimilarToAkon />
-            <Reproductor /> 
+            {mostrarReproductor? <Reproductor /> : null}
+             
         </>
     );
 }

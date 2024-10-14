@@ -1,4 +1,4 @@
-import { FormEventHandler, useState, Dispatch } from 'react'
+import { FormEventHandler, useState, Dispatch, createContext, useContext } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 
@@ -31,6 +31,29 @@ https://images2.imgbox.com/3a/fa/zc2jEw6s_o.png
 
 https://images2.imgbox.com/74/b8/DsvSf2rI_o.png
  */
+
+
+type AudioContextType = {
+  reproducir: boolean;
+  audioUrl: string;
+  imgUrl: string;
+  titulo: string;
+  artista: string;
+  changeAudioState: (
+    reproducir: boolean, 
+    audioUrl: string,
+    imgUrl: string,
+    titulo: string,
+    artista: string
+  ) => void;
+};
+
+export const AudioContext = createContext<AudioContextType | null>(
+  null
+);
+
+
+
 export default function App() {
   const [playlist, setPlaylist] = useState<string>('');
   const [home, setHome] = useState<boolean>(true);
@@ -38,7 +61,30 @@ export default function App() {
   const [titulo, setTitulo] = useState<string>('');
   const [descripcion, setDescripcion] = useState<string>(''); 
   const [agregarPlaylist, setAgregarPlaylist] = useState<boolean>(false);
+  const [audioReproductor, setAudioReproductor] = useState({ 
+    reproducir: false, 
+    audioUrl: '',
+    imgUrl: '',
+    titulo: '',
+    artista: ''    
+  });
 
+  const changeAudioState = (
+    reproducir: boolean, 
+    audioUrl: string,
+    imgUrl: string,
+    titulo: string,
+    artista: string,
+  ) => {
+    setAudioReproductor({ 
+      reproducir, 
+      audioUrl, 
+      imgUrl,
+      titulo,
+      artista
+    });
+  };
+  
   function inicio() {
     setHome((noHome) => {
       return !noHome;
@@ -60,7 +106,19 @@ export default function App() {
         
       </div>
      {home ? 
-      (<Home />) : 
+      (
+          <AudioContext.Provider
+          value={{
+            reproducir: audioReproductor.reproducir,
+            audioUrl: audioReproductor.audioUrl,
+            imgUrl: audioReproductor.imgUrl,
+            titulo: audioReproductor.titulo,
+            artista: audioReproductor.artista,
+            changeAudioState
+          }}>
+              <Home />
+          </AudioContext.Provider>        
+      ) : 
       (<NuevaPlaylist2
         setAgregarPlaylist={setAgregarPlaylist}
         setTitulo={setTitulo}

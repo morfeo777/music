@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import ElementosContainer, { Prop } from './elementos-contenedor.tsx';
 import DetallesItem from './detalles-elementos.tsx';
+import { AudioContext } from '../App.tsx';
 import '../assets/barra-izquierda-estilos.css';
 
 const API_URL = 'https://api.audioboom.com/audio_clips';
@@ -9,6 +10,7 @@ export default function PeticionListenAgain() {
   const [audio_clips, setAudioClips] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState('');
+  const audioContext = useContext(AudioContext);
 
 
   const ellipsis = (str: string, num: number = str.length, ellipsisStr = "...") =>
@@ -66,13 +68,26 @@ type AudioClip = {
       {audio_clips.slice(0,4).map((audio_clip: AudioClip) => {   
            const description_ab = audio_clip.description ? audio_clip.description : audio_clip.title;      
        return(
-         
-            <ElementosContainer img={audio_clip.channel.urls.logo_image.original}>
+        <>
+         <a href="#" className='contenedor'
+            onClick={() => {
+              /*alert(audio_clip.urls.high_mp3)*/
+              audioContext?.changeAudioState(
+                true, 
+                audio_clip.urls.high_mp3,
+                audio_clip.channel.urls.logo_image.original,
+                audio_clip.title,
+                description_ab
+              );
+            }}
+        >
+          <ElementosContainer img={audio_clip.channel.urls.logo_image.original}>
               <DetallesItem cancion={audio_clip.title.slice(0, 14)+'...'} />              
               <DetallesItem content={description_ab.slice(0, 21)+'...'} /> 
-            </ElementosContainer>
-          
-            
+          </ElementosContainer>          
+        </a>
+        
+        </>            
         );
              
       })}        
