@@ -1,0 +1,8 @@
+.costado {
+    left: 0;
+    color: white;
+    position: fixed;
+    background-color: black;
+    width: 7rem;
+    height: 100%;
+}
