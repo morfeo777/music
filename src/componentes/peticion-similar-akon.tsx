@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import ElementosContainer, { Prop } from './elementos-contenedor.tsx';
+import { useEffect, useState, useContext } from 'react';
 import DetallesItem from './detalles-elementos.tsx';
 import ElementosContainerImgRedondo from './elementos-contenedor-img-redondo.tsx';
+import { AudioContext } from '../App.tsx';
 import '../assets/barra-izquierda-estilos.css';
 
 const API_URL = 'https://api.audioboom.com/audio_clips';
@@ -10,13 +10,14 @@ export default function PeticionSimilarToAkon() {
   const [audio_clips, setAudioClips] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState('');
+  const audioContext = useContext(AudioContext);
 
 
-  const ellipsis = (str: string, num: number = str.length, ellipsisStr = "...") =>
+  /*const ellipsis = (str: string, num: number = str.length, ellipsisStr = "...") =>
     str.length >= num
       ? str.slice(0, num >= ellipsisStr.length ? num - ellipsisStr.length : num) +
         ellipsisStr
-      : str;
+      : str;*/
 
 
  type LogoImage = {        
@@ -63,15 +64,36 @@ type AudioClip = {
  
   return (
     <>
-    <div className='elementos_grupo_redondo'>        
+    <div className='elementos_grupo_redondo'> 
+    {isLoaded? null : null}
+    {error? null : null}
       {audio_clips.slice(10,14).map((audio_clip: AudioClip) => {   
            const description_ab = audio_clip.description ? audio_clip.description : audio_clip.title;      
        return(
-         
-            <ElementosContainerImgRedondo img={audio_clip.channel.urls.logo_image.original}>
-              <DetallesItem cancion={audio_clip.title.slice(0, 14)+'...'} />              
-              <DetallesItem content={description_ab.slice(0, 21)+'...'} /> 
-            </ElementosContainerImgRedondo>
+         <>
+         <a href="#"
+            className='contenedor'
+            onClick={() => {
+              /*alert(audio_clip.urls.high_mp3)*/              
+              audioContext?.changeAudioState(
+                true, 
+                audio_clip.urls.high_mp3,
+                audio_clip.channel.urls.logo_image.original,
+                audio_clip.title,
+                description_ab,
+                true, 
+                false
+              );              
+            }}
+         >
+              <ElementosContainerImgRedondo img={audio_clip.channel.urls.logo_image.original}>
+                  <DetallesItem cancion={audio_clip.title.slice(0, 14)+'...'} />              
+                  <DetallesItem content={description_ab.slice(0, 21)+'...'} /> 
+              </ElementosContainerImgRedondo>
+          </a>
+              
+          </>
+           
           
             
         );

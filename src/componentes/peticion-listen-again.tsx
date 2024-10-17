@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext } from 'react';
-import ElementosContainer, { Prop } from './elementos-contenedor.tsx';
+import ElementosContainer from './elementos-contenedor.tsx';
 import DetallesItem from './detalles-elementos.tsx';
 import { AudioContext } from '../App.tsx';
 import '../assets/barra-izquierda-estilos.css';
@@ -10,14 +10,16 @@ export default function PeticionListenAgain() {
   const [audio_clips, setAudioClips] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState('');
+  /*const [isPlaying, setIsPlaying] = useState(false);*/
   const audioContext = useContext(AudioContext);
+  /*const reproducir = (audioContext?.reproducir ? true : false);*/
 
 
-  const ellipsis = (str: string, num: number = str.length, ellipsisStr = "...") =>
+  /*const ellipsis = (str: string, num: number = str.length, ellipsisStr = "...") =>
     str.length >= num
       ? str.slice(0, num >= ellipsisStr.length ? num - ellipsisStr.length : num) +
         ellipsisStr
-      : str;
+      : str;*/
 
 
  type LogoImage = {        
@@ -71,14 +73,45 @@ type AudioClip = {
         <>
          <a href="#" className='contenedor'
             onClick={() => {
-              /*alert(audio_clip.urls.high_mp3)*/
+
               audioContext?.changeAudioState(
                 true, 
                 audio_clip.urls.high_mp3,
                 audio_clip.channel.urls.logo_image.original,
                 audio_clip.title,
-                description_ab
+                description_ab,
+                true, 
+                false
               );
+              /*alert(audio_clip.urls.high_mp3)*/ 
+              /*const nextIsPlaying = !reproducir;
+              setIsPlaying(nextIsPlaying);
+              if (!isPlaying) {
+                audioContext?.changeAudioState(
+                true, 
+                audio_clip.urls.high_mp3,
+                audio_clip.channel.urls.logo_image.original,
+                audio_clip.title,
+                description_ab,
+                true, 
+                false
+              );
+              } else {
+                setIsPlaying(false);
+                audioContext?.changeAudioState(
+                  false, 
+                  audio_clip.urls.high_mp3,
+                  audio_clip.channel.urls.logo_image.original,
+                  audio_clip.title,
+                  description_ab,
+                  true, 
+                  false
+                );
+              }*/       
+              
+
+              {isLoaded? null : null}
+              {error? null : null}
             }}
         >
           <ElementosContainer img={audio_clip.channel.urls.logo_image.original}>

@@ -1,8 +1,8 @@
-import { useEffect, useState, Dispatch } from 'react';
-import ElementosContainer, { Prop } from './elementos-contenedor.tsx';
+import { useEffect, useState } from 'react';
+import ElementosContainer from './elementos-contenedor.tsx';
 import DetallesItem from './detalles-elementos.tsx';
 import '../assets/barra-izquierda-estilos.css';
-import {AudioBoom2} from './pedir_audioboom2.tsx';
+/*import {AudioBoom2} from './pedir_audioboom2.tsx';*/
 
 const API_URL = 'https://rickandmortyapi.com/api/character?page=1';
 
@@ -56,15 +56,18 @@ export default function ListenAgainSeccion() {
       }, []);
 
     
-
+ /*{audio_clips.map((audio_clip: AudioClips) => {})}*/
     return(
         <>
+        {isLoaded? null : null}
+        {error? null : null}
+        {audio_clips? null : null}
         <div className='elementos_grupo'>
             <ElementosContainer img="https://images2.imgbox.com/36/db/DwVzTM6J_o.png">
                 <DetallesItem cancion='Playlist Nane' />
                 <DetallesItem content='Artist Name.68 songs' />
             </ElementosContainer>
-            {audio_clips.map((audio_clip: AudioClips) => {})}
+           
             
         </div>
             

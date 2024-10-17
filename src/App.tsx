@@ -1,10 +1,6 @@
-import { FormEventHandler, useState, Dispatch, createContext, useContext } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-
-import Reproductor from './componentes/barra-reproductor'
+import {  useState, Dispatch, createContext} from 'react'
 import Home from './componentes/home-completo'
-import ElementosContainer, { Prop } from './componentes/elementos-contenedor.tsx';
+import ElementosContainer from './componentes/elementos-contenedor.tsx';
 import DetallesItem from './componentes/detalles-elementos.tsx';
 import PlaylistIzquierda from './componentes/playlist-izquierda.tsx'
 import './assets/barra-izquierda-estilos.css';
@@ -39,12 +35,16 @@ type AudioContextType = {
   imgUrl: string;
   titulo: string;
   artista: string;
+  mostrarReproductor: boolean;
+  stopReproduccion: boolean; 
   changeAudioState: (
     reproducir: boolean, 
     audioUrl: string,
     imgUrl: string,
     titulo: string,
-    artista: string
+    artista: string,
+    mostrarReproductor: boolean,
+    stopReproduccion: boolean 
   ) => void;
 };
 
@@ -55,7 +55,7 @@ export const AudioContext = createContext<AudioContextType | null>(
 
 
 export default function App() {
-  const [playlist, setPlaylist] = useState<string>('');
+  /*const [playlist, setPlaylist] = useState<string>('');*/
   const [home, setHome] = useState<boolean>(true);
   const [img, setImg] = useState<string>('');
   const [titulo, setTitulo] = useState<string>('');
@@ -66,7 +66,9 @@ export default function App() {
     audioUrl: '',
     imgUrl: '',
     titulo: '',
-    artista: ''    
+    artista: '',
+    mostrarReproductor: false,
+    stopReproduccion: true    
   });
 
   const changeAudioState = (
@@ -75,13 +77,17 @@ export default function App() {
     imgUrl: string,
     titulo: string,
     artista: string,
+    mostrarReproductor: boolean,
+    stopReproduccion: boolean    
   ) => {
     setAudioReproductor({ 
       reproducir, 
       audioUrl, 
       imgUrl,
       titulo,
-      artista
+      artista,
+      mostrarReproductor,
+      stopReproduccion    
     });
   };
   
@@ -94,7 +100,8 @@ export default function App() {
   return (
     <>
       <div className='costado'>
-
+      {agregarPlaylist? null : null}
+      
         <AgregarPlaylistFormulario inicio={inicio} />       
         
         <PlaylistAgregada 
@@ -114,6 +121,8 @@ export default function App() {
             imgUrl: audioReproductor.imgUrl,
             titulo: audioReproductor.titulo,
             artista: audioReproductor.artista,
+            mostrarReproductor: audioReproductor.mostrarReproductor,
+            stopReproduccion: audioReproductor.stopReproduccion,
             changeAudioState
           }}>
               <Home />
@@ -261,125 +270,6 @@ function NuevaPlaylist2({ setAgregarPlaylist, setTitulo, setDescripcion, setImg,
   );
 
   
-function NuevaPlaylist({ setAgregarPlaylist, setTitulo, setDescripcion, setImg }: NuevaPlaylistProp) {
 
-  const [estaEscribiendo, setEstaEscribiendo] = useState<boolean>(true);
-  const [img, setImgPlaylist] = useState<string>('');
-  const [titulo, setTituloPlaylist] = useState<string>('');
-  const [descripcion, setDescripcionPlaylist] = useState<string>(''); 
-  function handleSubmit() {
-    setAgregarPlaylist(true);
-    setTitulo(titulo);
-    setDescripcion(descripcion);
-    setImg(img);    
-  }
-
-  return (
-    <>    
-      <div>
-        <FormularioNuevaPlaylist 
-          setEstaEscribiendo={setEstaEscribiendo}
-          setImg={setImgPlaylist}
-          setTitulo={setTituloPlaylist}
-          setDescripcion={setDescripcionPlaylist}
-          handleSubmit={handleSubmit}
-        />
-        
-        {estaEscribiendo ? (
-          <ResultadoDerecha 
-          tituloDerecha={titulo}
-          descripcionDerecha={descripcion}
-          imagen={img}
-         />) : null}
-        
-      </div>
-    </>
-      
-      
-    
-  );
-
-  type FormularioNuevaPlaylistProp = {    
-    setEstaEscribiendo: Dispatch<React.SetStateAction<boolean>>;
-    setTitulo: Dispatch<React.SetStateAction<string>>;
-    setDescripcion: Dispatch<React.SetStateAction<string>>;
-    setImg: Dispatch<React.SetStateAction<string>>;
-    handleSubmit: () => void;
-  };
-  
-  function FormularioNuevaPlaylist({ setEstaEscribiendo, setTitulo, setDescripcion, setImg, handleSubmit }: FormularioNuevaPlaylistProp) {
-    
-    function handleChangeImage(event: React.ChangeEvent<HTMLInputElement>) {
-      /*setEstaEscribiendo(true);*/
-      setImg(event.target.value);
-    }
-  
-    function handleChangeTitulo(event: React.ChangeEvent<HTMLInputElement>) {
-      /*setEstaEscribiendo(true);*/
-      setTitulo(event.target.value);
-    }
-    function handleChangeDescripcion(event: React.ChangeEvent<HTMLInputElement>) {
-      /*setEstaEscribiendo(true);*/
-      setDescripcion(event.target.value);
-    }
-    
-    function handleSubmitForm(event: React.FormEvent) {
-      event.preventDefault();
-      () => handleSubmit()      
-    }
-
-    return(
-      <form onSubmit={handleSubmitForm}>
-        <div>       
-
-        <input
-          type="text"
-          value={titulo}
-          onChange={handleChangeTitulo}
-          placeholder="Ingresa el Titulo"
-          required={true}
-        />
-        
-        <input
-          type="text"
-          value={descripcion}
-          onChange={handleChangeDescripcion}
-          placeholder="Ingresa una descripcion"
-          required={true}
-        />
-        <input
-          type="text"
-          value={img}
-          onChange={handleChangeImage}                  
-          placeholder="Ingresa la URL de la  imagen"
-          required={true}
-        />
-        <button type="submit" disabled={estaEscribiendo}>Agregar</button>
-      </div>
-      </form>
-    );
-  }
-
-
-  type ResultadoDerechaProp = {    
-    tituloDerecha : string;
-    descripcionDerecha : string;
-    imagen : string;
-  }; 
-
-  function ResultadoDerecha({ tituloDerecha, descripcionDerecha, imagen }: ResultadoDerechaProp) {
-    return(
-        <div className='elementos_grupo'>
-            <ElementosContainer img={imagen}>
-              <DetallesItem cancion={tituloDerecha} />
-              <DetallesItem content={descripcionDerecha} />
-            </ElementosContainer>            
-                    
-        </div>
-    ); 
-            
-  }
-
-}
 
 }
