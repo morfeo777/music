@@ -1,4 +1,4 @@
-import ElementosContainer, { Prop } from './elementos-contenedor.tsx';
+import ElementosContainer from './elementos-contenedor.tsx';
 import DetallesItem from './detalles-elementos.tsx';
 import '../assets/barra-izquierda-estilos.css';
 

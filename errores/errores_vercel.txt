@@ -1,0 +1,109 @@
+[17:15:51.369] Running build in Washington, D.C., USA (East) – iad1
+[17:15:51.472] Cloning github.com/morfeo777/music (Branch: main, Commit: f6b84b8)
+[17:15:51.857] Previous build cache not available
+[17:15:52.146] Cloning completed: 673.354ms
+[17:15:52.406] Running "vercel build"
+[17:15:52.806] Vercel CLI 37.8.0
+[17:15:53.455] Installing dependencies...
+[17:15:57.863] 
+[17:15:57.863] added 197 packages in 4s
+[17:15:57.864] 
+[17:15:57.864] 42 packages are looking for funding
+[17:15:57.864]   run `npm fund` for details
+[17:15:57.883] Running "npm run build"
+[17:15:58.013] 
+[17:15:58.013] > music-ejercicio1@0.0.0 build
+[17:15:58.013] > tsc -b && vite build
+[17:15:58.013] 
+[17:16:00.536] src/componentes/contenedor-barra-reproductor.tsx(3,1): error TS6133: 'AiFillStepBackward' is declared but its value is never read.
+[17:16:00.538] src/componentes/contenedor-barra-reproductor.tsx(4,1): error TS6133: 'AiFillStepForward' is declared but its value is never read.
+[17:16:00.538] src/componentes/contenedor-barra-reproductor.tsx(5,1): error TS6133: 'AiFillCaretRight' is declared but its value is never read.
+[17:16:00.538] src/componentes/contenedor-barra-reproductor.tsx(6,1): error TS6133: 'IconContext' is declared but its value is never read.
+[17:16:00.538] src/componentes/contenedor-barra-reproductor.tsx(23,12): error TS6133: 'isPaused' is declared but its value is never read.
+[17:16:00.538] src/componentes/contenedor-barra-reproductor.tsx(26,11): error TS6133: 'audioPlay' is declared but its value is never read.
+[17:16:00.539] src/componentes/contenedor-barra-reproductor.tsx(27,11): error TS6133: 'pepe' is declared but its value is never read.
+[17:16:00.539] src/componentes/barra-reproductor.tsx(2,22): error TS6133: 'Prop' is declared but its value is never read.
+[17:16:00.539] src/componentes/pedir_audioboom.tsx(3,7): error TS6133: 'API_URL_RICK_MORTY' is declared but its value is never read.
+[17:16:00.539] src/componentes/pedir_audioboom.tsx(6,6): error TS6196: 'AudioBoomProp' is declared but never used.
+[17:16:00.539] src/componentes/pedir_audioboom.tsx(48,12): error TS6133: 'personajes' is declared but its value is never read.
+[17:16:00.539] src/componentes/pedir_audioboom.tsx(48,24): error TS6133: 'setPersonajes' is declared but its value is never read.
+[17:16:00.539] src/componentes/listen-again.tsx(1,30): error TS6133: 'Prop' is declared but its value is never read.
+[17:16:00.539] src/componentes/listen-again.tsx(28,10): error TS6196: 'AudioClips' is declared but never used.
+[17:16:00.539] src/componentes/listen-again.tsx(35,11): error TS6133: 'audio_clips' is declared but its value is never read.
+[17:16:00.539] src/componentes/recommended-albums.tsx(1,30): error TS6133: 'Prop' is declared but its value is never read.
+[17:16:00.539] src/componentes/similar-to-akon.tsx(1,30): error TS6133: 'Prop' is declared but its value is never read.
+[17:16:00.539] src/componentes/peticion-listen-again.tsx(2,30): error TS6133: 'Prop' is declared but its value is never read.
+[17:16:00.539] src/componentes/peticion-listen-again.tsx(11,10): error TS6133: 'isLoaded' is declared but its value is never read.
+[17:16:00.539] src/componentes/peticion-listen-again.tsx(12,10): error TS6133: 'error' is declared but its value is never read.
+[17:16:00.539] src/componentes/peticion-listen-again.tsx(16,9): error TS6133: 'ellipsis' is declared but its value is never read.
+[17:16:00.539] src/componentes/peticion-quick-picks.tsx(2,1): error TS6133: 'ElementosContainer' is declared but its value is never read.
+[17:16:00.539] src/componentes/peticion-quick-picks.tsx(3,1): error TS6133: 'DetallesItem' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-quick-picks.tsx(6,31): error TS6133: 'Prop' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-quick-picks.tsx(13,10): error TS6133: 'isLoaded' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-quick-picks.tsx(14,10): error TS6133: 'error' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-quick-picks.tsx(17,9): error TS6133: 'ellipsis' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-recomended-albums.tsx(2,30): error TS6133: 'Prop' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-recomended-albums.tsx(10,10): error TS6133: 'isLoaded' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-recomended-albums.tsx(11,10): error TS6133: 'error' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-recomended-albums.tsx(14,9): error TS6133: 'ellipsis' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-similar-akon.tsx(2,1): error TS6192: All imports in import declaration are unused.
+[17:16:00.540] src/componentes/peticion-similar-akon.tsx(11,10): error TS6133: 'isLoaded' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-similar-akon.tsx(12,10): error TS6133: 'error' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-similar-akon.tsx(15,9): error TS6133: 'ellipsis' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-listen-again2.tsx(2,30): error TS6133: 'Prop' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-listen-again2.tsx(11,10): error TS6133: 'isLoaded' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-listen-again2.tsx(12,10): error TS6133: 'error' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-listen-again2.tsx(16,10): error TS6133: 'isPaused' is declared but its value is never read.
+[17:16:00.540] src/componentes/peticion-listen-again2.tsx(20,9): error TS6133: 'ellipsis' is declared but its value is never read.
+[17:16:00.540] src/componentes/home-completo.tsx(5,1): error TS6133: 'QuickPicks' is declared but its value is never read.
+[17:16:00.540] src/componentes/home-completo.tsx(16,1): error TS6133: 'PeticionListenAgain2' is declared but its value is never read.
+[17:16:00.540] src/App.tsx(1,10): error TS6133: 'FormEventHandler' is declared but its value is never read.
+[17:16:00.540] src/App.tsx(1,63): error TS6133: 'useContext' is declared but its value is never read.
+[17:16:00.540] src/App.tsx(2,1): error TS6133: 'reactLogo' is declared but its value is never read.
+[17:16:00.540] src/App.tsx(3,1): error TS6133: 'viteLogo' is declared but its value is never read.
+[17:16:00.540] src/App.tsx(5,1): error TS6133: 'Reproductor' is declared but its value is never read.
+[17:16:00.540] src/App.tsx(7,30): error TS6133: 'Prop' is declared but its value is never read.
+[17:16:00.543] src/App.tsx(58,10): error TS6133: 'playlist' is declared but its value is never read.
+[17:16:00.544] src/App.tsx(58,20): error TS6133: 'setPlaylist' is declared but its value is never read.
+[17:16:00.544] src/App.tsx(63,10): error TS6133: 'agregarPlaylist' is declared but its value is never read.
+[17:16:00.544] src/App.tsx(264,10): error TS6133: 'NuevaPlaylist' is declared but its value is never read.
+[17:16:00.544] src/App.tsx(310,38): error TS6133: 'setEstaEscribiendo' is declared but its value is never read.
+[17:16:00.544] src/componentes/contenedor-barra-reproductor2.tsx(3,1): error TS6133: 'AiFillStepBackward' is declared but its value is never read.
+[17:16:00.544] src/componentes/contenedor-barra-reproductor2.tsx(4,1): error TS6133: 'AiFillStepForward' is declared but its value is never read.
+[17:16:00.544] src/componentes/contenedor-barra-reproductor2.tsx(5,1): error TS6133: 'AiFillCaretRight' is declared but its value is never read.
+[17:16:00.544] src/componentes/contenedor-barra-reproductor2.tsx(6,1): error TS6133: 'IconContext' is declared but its value is never read.
+[17:16:00.544] src/componentes/contenedor-barra-reproductor2.tsx(23,12): error TS6133: 'isPaused' is declared but its value is never read.
+[17:16:00.544] src/componentes/contenedor-barra-reproductor2.tsx(26,11): error TS6133: 'audioPlay' is declared but its value is never read.
+[17:16:00.544] src/componentes/contenedor-barra-reproductor2.tsx(27,11): error TS6133: 'pepe' is declared but its value is never read.
+[17:16:00.544] src/componentes/pedir_audioboom2.tsx(3,7): error TS6133: 'API_URL_RICK_MORTY' is declared but its value is never read.
+[17:16:00.544] src/componentes/pedir_audioboom2.tsx(4,7): error TS6133: 'API_URL_AUDIOBOOM' is declared but its value is never read.
+[17:16:00.544] src/componentes/pedir_audioboom2.tsx(6,6): error TS6196: 'AudioBoomProp' is declared but never used.
+[17:16:00.544] src/componentes/pedir_audioboom2.tsx(14,28): error TS7006: Parameter 'url' implicitly has an 'any' type.
+[17:16:00.544] src/componentes/pedir_audioboom2.tsx(48,12): error TS6133: 'personajes' is declared but its value is never read.
+[17:16:00.544] src/componentes/pedir_audioboom2.tsx(48,24): error TS6133: 'setPersonajes' is declared but its value is never read.
+[17:16:00.544] src/componentes/listen-again2.tsx(1,1): error TS6192: All imports in import declaration are unused.
+[17:16:00.544] src/componentes/listen-again2.tsx(2,30): error TS6133: 'Prop' is declared but its value is never read.
+[17:16:00.544] src/componentes/listen-again2.tsx(12,12): error TS6133: 'error' is declared but its value is never read.
+[17:16:00.544] src/componentes/listen-again2.tsx(12,19): error TS6133: 'isLoaded' is declared but its value is never read.
+[17:16:00.544] src/componentes/listen-again2.tsx(57,13): error TS2322: Type 'void[]' is not assignable to type 'ReactNode'.
+[17:16:00.544]   Type 'void[]' is not assignable to type 'Iterable<ReactNode>'.
+[17:16:00.544]     The types returned by '[Symbol.iterator]().next(...)' are incompatible between these types.
+[17:16:00.544]       Type 'IteratorResult<void, any>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+[17:16:00.544]         Type 'IteratorYieldResult<void>' is not assignable to type 'IteratorResult<ReactNode, any>'.
+[17:16:00.545]           Type 'IteratorYieldResult<void>' is not assignable to type 'IteratorYieldResult<ReactNode>'.
+[17:16:00.545]             Type 'void' is not assignable to type 'ReactNode'.
+[17:16:00.545] src/componentes/listen-again2.tsx(57,31): error TS6133: 'audio_clip' is declared but its value is never read.
+[17:16:00.545] src/componentes/listen-again3.tsx(1,31): error TS6133: 'Dispatch' is declared but its value is never read.
+[17:16:00.545] src/componentes/listen-again3.tsx(2,30): error TS6133: 'Prop' is declared but its value is never read.
+[17:16:00.545] src/componentes/listen-again3.tsx(5,1): error TS6133: 'AudioBoom2' is declared but its value is never read.
+[17:16:00.545] src/componentes/listen-again3.tsx(40,12): error TS6133: 'isLoaded' is declared but its value is never read.
+[17:16:00.545] src/componentes/listen-again3.tsx(41,12): error TS6133: 'error' is declared but its value is never read.
+[17:16:00.545] src/componentes/listen-again3.tsx(67,13): error TS2322: Type 'void[]' is not assignable to type 'ReactNode'.
+[17:16:00.554] src/componentes/listen-again3.tsx(67,31): error TS6133: 'audio_clip' is declared but its value is never read.
+[17:16:00.554] src/componentes/pruebas.tsx(1,2): error TS2304: Cannot find name 'estaEscribiendo'.
+[17:16:00.555] src/componentes/pruebas.tsx(2,6): error TS2304: Cannot find name 'ResultadoDerecha'.
+[17:16:00.555] src/componentes/pruebas.tsx(3,20): error TS2304: Cannot find name 'titulo'.
+[17:16:00.555] src/componentes/pruebas.tsx(4,25): error TS2304: Cannot find name 'descripcion'.
+[17:16:00.555] src/componentes/pruebas.tsx(5,13): error TS2304: Cannot find name 'img'.
+[17:16:00.777] Error: Command "npm run build" exited with 2
+[17:16:00.972] 

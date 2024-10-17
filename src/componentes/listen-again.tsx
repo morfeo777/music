@@ -1,38 +1,12 @@
-import ElementosContainer, { Prop } from './elementos-contenedor.tsx';
+import ElementosContainer from './elementos-contenedor.tsx';
 import DetallesItem from './detalles-elementos.tsx';
 import '../assets/barra-izquierda-estilos.css';
-import AudioBoom from './pedir_audioboom.tsx';
+
 
 function ListenAgainSeccion() {
 
-    type LogoImage = {        
-        original: string        
-    };
+
     
-    type ChannelUrls = {        
-        detail: string;
-        logo_image: LogoImage;
-    };
-
-    type Channel = {
-        id: string;
-        title: string;
-        urls: ChannelUrls;
-    };
-
-    type Urls = {
-        detail: string;
-        high_mp3: string;
-    };
-
-    type AudioClips = {
-        title: string;
-        description: string;        
-        channel: Channel;
-        urls: Urls;
-    };
-
-    const audio_clips = AudioBoom();
 
     return(
         <>

@@ -1,13 +1,13 @@
-import { useEffect, useState, Dispatch } from 'react';
+import { useEffect, useState } from 'react';
 
-const API_URL_RICK_MORTY = 'https://rickandmortyapi.com/api/character?page=1';
-const API_URL_AUDIOBOOM = 'https://api.audioboom.com/audio_clips';
 
-type AudioBoomProp = { 
+/*const API_URL_AUDIOBOOM = 'https://api.audioboom.com/audio_clips';*/
+
+ /*type AudioBoomProp = { 
     audio_clips: string [];
-    /*setAudioClips: Dispatch<React.SetStateAction<[]>>;*/
+   setAudioClips: Dispatch<React.SetStateAction<[]>>;
     setAudioClips: Dispatch<React.SetStateAction<[]>>;
-  };
+  };*/
   /*export default function AudioBoom({ audio_clips, setAudioClips }: AudioBoomProp) {*/
 
 
@@ -54,13 +54,14 @@ export  const AudioBoom2 = url => {
           .then((data) => {
             setAudioClips(data.body.audio_clips);
             setIsLoaded(false);
+            setPersonajes(data.body.audio_clips);
           })
           .catch(() => {
             setError('Hubo un error');
           });
       }, []);
       
-      return { error, isLoaded, audio_clips };
+      return { error, isLoaded, audio_clips, personajes };
 
       /*return (
         <>

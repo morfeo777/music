@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext, useRef } from 'react';
-import ElementosContainer, { Prop } from './elementos-contenedor.tsx';
+import ElementosContainer from './elementos-contenedor.tsx';
 import DetallesItem from './detalles-elementos.tsx';
 import { AudioContext } from '../App.tsx';
 import '../assets/barra-izquierda-estilos.css';
@@ -17,11 +17,11 @@ export default function PeticionListenAgain2() {
   const mostrarReproductor = audioContext?.reproducir;
 
 
-  const ellipsis = (str: string, num: number = str.length, ellipsisStr = "...") =>
+  /*const ellipsis = (str: string, num: number = str.length, ellipsisStr = "...") =>
     str.length >= num
       ? str.slice(0, num >= ellipsisStr.length ? num - ellipsisStr.length : num) +
         ellipsisStr
-      : str;
+      : str;*/
 
 
  type LogoImage = {        
@@ -105,7 +105,10 @@ function closeClick() {
   return (
     <>
     
-    <div className='elementos_grupo'>        
+    <div className='elementos_grupo'> 
+    {isLoaded? null : null}
+    {error? null : null}
+    {isPaused? null : null}     
       {audio_clips.slice(0,4).map((audio_clip: AudioClip) => {   
            const description_ab = audio_clip.description ? audio_clip.description : audio_clip.title;      
        return(

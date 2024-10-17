@@ -1,5 +1,6 @@
 import { useContext } from "react";
-import BarraAbajo, { Prop } from "./contenedor-barra-reproductor";
+
+import BarraAbajo3 from "./contenedor-barra-reproductor3.tsx";
 import { AudioContext } from '../App.tsx';
 
 
@@ -15,7 +16,7 @@ const reproducir = (audioContext?.reproducir ? true : false);
 
     return(
         <>
-            <BarraAbajo 
+            <BarraAbajo3 
                 img={img} 
                 titulo={titulo}
                 artista={artista}

@@ -1,5 +1,6 @@
-import { useRef, useState, useContext, useEffect } from 'react';
+import { useRef, useState, useContext, useEffect, useCallback } from 'react';
 import '../assets/barra-abajo.css';
+import '../assets/barra-progreso-audio.css';
 import { AudioContext } from '../App.tsx';
 
 
@@ -14,17 +15,20 @@ export type Prop = {
 
   /*const AUDIO_URL = 'https://audioboom.com/posts/8562837.mp3';*/
   
-  function BarraAbajo({ img, titulo, artista,  audioHighMp3, reproducir}: Prop) {
+  function BarraAbajo3({ img, titulo, artista,  audioHighMp3, reproducir}: Prop) {
 
     const [isPlaying, setIsPlaying] = useState(false);    
     const audioRef = useRef<HTMLAudioElement | null>(null);
-    
+    const progressBarRef = useRef<HTMLInputElement | null>(null);
     const audioContext = useContext(AudioContext);
     const audioUrl: string = audioHighMp3 ?? '';
     const imgUrl: string = img ?? '';
     const tituloInterno: string = titulo ?? '';
     const artistaInterno: string = artista ?? '';
-    
+    const [tiempoActual, setTiempoActual] = useState(0);
+    const [timeProgress, setTimeProgress] = useState(0);
+    const [duration, setDuration] = useState(0);
+    const playAnimationRef = useRef(0);
 
     function handleClick() {
       const nextIsPlaying = !reproducir;
@@ -41,6 +45,7 @@ export type Prop = {
           true, 
           false
         );
+        
       } else {
         setIsPlaying(false);        
         audioRef.current?.pause();
@@ -108,7 +113,8 @@ export type Prop = {
       }
     }
 
-    useEffect(() => {
+    useEffect(() => {        
+          
       /*handleClick();
         const nextIsPlaying = !isPlaying;
         setIsPlaying(nextIsPlaying);
@@ -122,25 +128,74 @@ export type Prop = {
           audioRef.current?.pause();
         }*/
     });
+    /*useEffect(() => {
+        if (isPlaying) {
+          audioRef.current.play();
+          playAnimationRef.current = requestAnimationFrame(repeat);
+        } else {
+          audioRef.current.pause();
+          cancelAnimationFrame(playAnimationRef.current);
+        }
+      }, [isPlaying, audioRef, repeat]);*/
 
-    if(reproducir) {
-      
-      audioRef.current?.play();
-      
-      /*setIsPlaying(true);*/
-      /*alert('Entro en Reproducir');*/
-
-      /*const nextIsPlaying = !isPlaying;
-      setIsPlaying(nextIsPlaying);
-      if (!isPlaying) {
-        setIsPlaying(true);        
-        audioRef.current?.play();
-
-      } else {
-        setIsPlaying(false);        
-        audioRef.current?.pause();
-      }*/
+    function handleProgressChange() {
+        /*console.log(progressBarRef.current.value);*/
+        /*const duracion: number = progressBarRef.current?.value ?? 0; */  
+        setTiempoActual( Number( progressBarRef.current?.value));     
+        if (audioRef.current){
+            audioRef.current.currentTime = tiempoActual;
+        }
+        
     }
+
+    function onLoadedMetadata() {
+        console.log(audioRef.current?.duration);
+        const seconds = audioRef.current?.duration;
+        setDuration( Number(seconds) );
+        if (progressBarRef.current){
+            progressBarRef.current.max = String(seconds) ;
+        }
+        
+    }
+
+    function formatTime2(time : number) {
+        if (time && !isNaN(time)) {
+            const minutes = Math.floor(time / 60);
+            const formatMinutes =
+              minutes < 10 ? `0${minutes}` : `${minutes}`;
+            const seconds = Math.floor(time % 60);
+            const formatSeconds =
+              seconds < 10 ? `0${seconds}` : `${seconds}`;
+            return `${formatMinutes}:${formatSeconds}`;
+          }
+          return '00:00';
+    }
+
+    const repeat = useCallback(() => {
+        const currentTime = audioRef.current?.currentTime;
+        setTimeProgress( Number(currentTime) );
+        if (progressBarRef.current) {
+            progressBarRef.current.value = String(currentTime);
+            progressBarRef.current.style.setProperty(
+          '--range-progress',
+          `${( Number(progressBarRef.current.value)  / duration) * 100}%`
+        );
+        }   
+        playAnimationRef.current = requestAnimationFrame(repeat);
+      }, [audioRef, duration, progressBarRef, setTimeProgress]);    
+
+      if(reproducir) {      
+        audioRef.current?.play(); 
+        playAnimationRef.current = requestAnimationFrame(repeat);         
+      } else {
+        audioRef.current?.pause();
+        cancelAnimationFrame(playAnimationRef.current);
+      }
+
+        /*if(reproducir) {      
+            audioRef.current?.play();         
+        }*/
+
 
     return (
       <div className='footer'>
@@ -201,10 +256,19 @@ export type Prop = {
                 </a>       
             
                 
-            <audio key={audioHighMp3} ref={audioRef} autoPlay={true}>
+            <audio key={audioHighMp3} ref={audioRef} autoPlay={true} onLoadedMetadata={onLoadedMetadata}>
               <source src={audioHighMp3} type="audio/mpeg" />
             </audio>
-            
+                <div className="progress">
+                    <span className="time current">{ formatTime2(timeProgress) }</span>
+                    <input 
+                    type="range" 
+                    ref={progressBarRef}
+                    defaultValue="0"
+                    onChange={handleProgressChange}
+                    />
+                    <span className="time">{formatTime2(duration)}</span>
+                </div>
             </div>  
           
           <div className='info-barra-abajo'>
@@ -238,4 +302,4 @@ export type Prop = {
     );
   }
   
-  export default BarraAbajo;
+  export default BarraAbajo3;
