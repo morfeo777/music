@@ -82,7 +82,9 @@ function closeClick() {
       audioContext.audioUrl,
       audioContext.imgUrl,
       audioContext.titulo,
-      audioContext.artista
+      audioContext.artista,
+      true,
+      false
     );
     
   }
