@@ -12,7 +12,9 @@ export default function PeticionListenAgain() {
   const [error, setError] = useState('');
   /*const [isPlaying, setIsPlaying] = useState(false);*/
   const audioContext = useContext(AudioContext);
-  /*const reproducir = (audioContext?.reproducir ? true : false);*/
+  /*const [isPlaying, setIsPlaying] = useState(false);*/
+  const reproducir = (audioContext?.reproducir ? true : false);
+  const tituloContexto = (audioContext?.titulo ? audioContext.titulo : "Listen Again");
 
 
   /*const ellipsis = (str: string, num: number = str.length, ellipsisStr = "...") =>
@@ -48,7 +50,36 @@ type AudioClip = {
   urls: Urls;
 };
 
-
+/*function handleClick() {
+  const nextIsPlaying = !reproducir;
+  setIsPlaying(nextIsPlaying);
+  if (!isPlaying) {
+    setIsPlaying(true);        
+    audioRef.current?.play();
+    audioContext?.changeAudioState(
+      true, 
+      audioUrl,
+      imgUrl,
+      tituloInterno,
+      artistaInterno,
+      true, 
+      false
+    );
+    
+  } else {
+    setIsPlaying(false);        
+    audioRef.current?.pause();
+    audioContext?.changeAudioState(
+      false, 
+      audioUrl,
+      imgUrl,
+      tituloInterno,
+      artistaInterno,
+      true, 
+      false
+    );
+  }
+}*/
 
   useEffect(() => {
     setIsLoaded(true);
@@ -71,10 +102,35 @@ type AudioClip = {
            const description_ab = audio_clip.description ? audio_clip.description : audio_clip.title;      
        return(
         <>
+        
          <a href="#" className='contenedor'
-            onClick={() => {
-
-              audioContext?.changeAudioState(
+            onClick={
+              () => {
+                if(reproducir) {
+                  if(tituloContexto === audio_clip.title){
+                    audioContext?.changeAudioState(
+                    false, 
+                    audio_clip.urls.high_mp3,
+                    audio_clip.channel.urls.logo_image.original,
+                    audio_clip.title,
+                    description_ab,
+                    true, 
+                    false
+                  );
+                  } else {
+                    audioContext?.changeAudioState(
+                      true, 
+                      audio_clip.urls.high_mp3,
+                      audio_clip.channel.urls.logo_image.original,
+                      audio_clip.title,
+                      description_ab,
+                      true, 
+                      false
+                    );
+                  }
+                  
+                } else {
+                  audioContext?.changeAudioState(
                 true, 
                 audio_clip.urls.high_mp3,
                 audio_clip.channel.urls.logo_image.original,
@@ -83,41 +139,51 @@ type AudioClip = {
                 true, 
                 false
               );
-              /*alert(audio_clip.urls.high_mp3)*/ 
-              /*const nextIsPlaying = !reproducir;
-              setIsPlaying(nextIsPlaying);
-              if (!isPlaying) {
-                audioContext?.changeAudioState(
-                true, 
-                audio_clip.urls.high_mp3,
-                audio_clip.channel.urls.logo_image.original,
-                audio_clip.title,
-                description_ab,
-                true, 
-                false
-              );
-              } else {
-                setIsPlaying(false);
-                audioContext?.changeAudioState(
-                  false, 
-                  audio_clip.urls.high_mp3,
-                  audio_clip.channel.urls.logo_image.original,
-                  audio_clip.title,
-                  description_ab,
-                  true, 
-                  false
-                );
-              }*/       
+                }
+              
+                    
               
 
               {isLoaded? null : null}
               {error? null : null}
             }}
         >
-          <ElementosContainer img={audio_clip.channel.urls.logo_image.original}>
+          <div className='contenedor'>
+            <ElementosContainer img={audio_clip.channel.urls.logo_image.original}>
               <DetallesItem cancion={audio_clip.title.slice(0, 14)+'...'} />              
               <DetallesItem content={description_ab.slice(0, 21)+'...'} /> 
-          </ElementosContainer>          
+            </ElementosContainer>
+          {reproducir? (tituloContexto === audio_clip.title?
+          (<div className="overlay">
+            <img
+                
+                src= "https://images2.imgbox.com/49/02/pSDOPEuz_o.png"
+                alt="Pause"
+                width={170}
+                height={140}
+            />
+            </div>) : 
+            <div className="overlay">
+              <img
+          
+                src= "https://images2.imgbox.com/df/cc/v6OqPTZp_o.png"
+                alt="Play"
+                width={170}
+                height={140}
+              />
+            </div>) 
+           : (
+            <div className="overlay">
+                        <img
+                            
+                            src= "https://images2.imgbox.com/df/cc/v6OqPTZp_o.png"
+                            alt="Play"
+                            width={170}
+                            height={140}
+                        />
+             </div>)  }
+        </div>
+                   
         </a>
         
         </>            
