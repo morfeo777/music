@@ -1,9 +1,5 @@
 import { useRef, useState, useContext, useEffect } from 'react';
 import '../assets/barra-abajo.css';
-import { AiFillStepBackward } from "react-icons/ai";
-import { AiFillStepForward } from "react-icons/ai";
-import { AiFillCaretRight } from "react-icons/ai";
-import { IconContext } from "react-icons";
 import { AudioContext } from '../App.tsx';
 
 
@@ -24,7 +20,7 @@ export type Prop = {
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const audioContext = useContext(AudioContext);
     const audioPlay = (audioContext?.audioUrl ? audioContext.audioUrl : AUDIO_URL);
-    const pepe = (audioContext?.audioUrl ? audioContext.audioUrl : AUDIO_URL); 
+     
     
 
     function handleClick() {
@@ -68,7 +64,9 @@ export type Prop = {
           audioContext.audioUrl,
           audioContext.imgUrl,
           audioContext.titulo,
-          audioContext.artista
+          audioContext.artista,
+          false,
+          true
         );
         /*const nextIsPlaying = !isPlaying;
         setIsPlaying(nextIsPlaying);
@@ -115,7 +113,8 @@ export type Prop = {
                 height={37}
                 />
             </a>
-            {isPlaying ? 
+            {isPlaying ?
+
               (
               <a href="#"  onClick={handleClick}>
                     <img
@@ -167,6 +166,8 @@ export type Prop = {
             </div>  
           
           <div className='info-barra-abajo'>
+          {isPaused? null : null}
+          {audioPlay? null : null}
           {img ? (
             <img
                 className="cancion"
