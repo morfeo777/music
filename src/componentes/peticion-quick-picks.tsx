@@ -12,6 +12,8 @@ export default function PeticionQuickPicks() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState('');
   const audioContext = useContext(AudioContext);
+  const reproducir = (audioContext?.reproducir ? true : false);
+  const tituloContexto = (audioContext?.titulo ? audioContext.titulo : "Listen Again");
 
 
   /*const ellipsis = (str: string, num: number = str.length, ellipsisStr = "...") =>
@@ -71,9 +73,20 @@ type AudioClip = {
           return(
             <>
             <a href="#"
-                className='contenedor'
-                onClick={() => {
-                  /*alert(audio_clip.urls.high_mp3)*/              
+            className='contenedor'
+            onClick={() => {
+              if(reproducir) {
+                if(tituloContexto === audio_clip.title){
+                  audioContext?.changeAudioState(
+                  false, 
+                  audio_clip.urls.high_mp3,
+                  audio_clip.channel.urls.logo_image.original,
+                  audio_clip.title,
+                  description_ab,
+                  true, 
+                  false
+                );
+                } else {
                   audioContext?.changeAudioState(
                     true, 
                     audio_clip.urls.high_mp3,
@@ -82,15 +95,60 @@ type AudioClip = {
                     description_ab,
                     true, 
                     false
-                  );              
+                  );
+                }
+                
+              } else {
+                audioContext?.changeAudioState(
+              true, 
+              audio_clip.urls.high_mp3,
+              audio_clip.channel.urls.logo_image.original,
+              audio_clip.title,
+              description_ab,
+              true, 
+              false
+            );
+              }              
             }}
             >
-                  <QuickPicksContenedor
+              <div className='contenedor'>
+                <QuickPicksContenedor
                       img={audio_clip.channel.urls.logo_image.original}
                       titulo={audio_clip.title.slice(0, 14)+'...'}
-                      artista={description_ab.slice(0, 21)+'...'}/>
-           </a>
-            
+                      artista={description_ab.slice(0, 21)+'...'}                        
+                />
+             {reproducir? (tituloContexto === audio_clip.title?
+          (<div className="overlay">
+            <img
+                
+                src= "https://images2.imgbox.com/49/02/pSDOPEuz_o.png"
+                alt="Pause"
+                width={77}
+                height={77}
+            />
+            </div>) : 
+            <div className="overlay">
+              <img
+          
+                src= "https://images2.imgbox.com/df/cc/v6OqPTZp_o.png"
+                alt="Play"
+                width={77}
+                height={77}
+              />
+            </div>) 
+           : (
+            <div className="overlay">
+                        <img
+                            
+                            src= "https://images2.imgbox.com/df/cc/v6OqPTZp_o.png"
+                            alt="Play"
+                            width={77}
+                            height={77}
+                        />
+             </div>)  }
+              </div>
+                
+                </a>               
             </>
                                        
             );             
@@ -105,9 +163,20 @@ type AudioClip = {
           return(
             <>
             <a href="#"
-                className='contenedor'
-                onClick={() => {
-                  /*alert(audio_clip.urls.high_mp3)*/              
+            className='contenedor'
+            onClick={() => {
+              if(reproducir) {
+                if(tituloContexto === audio_clip.title){
+                  audioContext?.changeAudioState(
+                  false, 
+                  audio_clip.urls.high_mp3,
+                  audio_clip.channel.urls.logo_image.original,
+                  audio_clip.title,
+                  description_ab,
+                  true, 
+                  false
+                );
+                } else {
                   audioContext?.changeAudioState(
                     true, 
                     audio_clip.urls.high_mp3,
@@ -116,16 +185,61 @@ type AudioClip = {
                     description_ab,
                     true, 
                     false
-                  );              
-                }}
+                  );
+                }
+                
+              } else {
+                audioContext?.changeAudioState(
+              true, 
+              audio_clip.urls.high_mp3,
+              audio_clip.channel.urls.logo_image.original,
+              audio_clip.title,
+              description_ab,
+              true, 
+              false
+            );
+              }              
+            }}
             >
-               <QuickPicksContenedor
-                  img={audio_clip.channel.urls.logo_image.original}
-                  titulo={audio_clip.title.slice(0, 14)+'...'}
-                  artista={description_ab.slice(0, 21)+'...'}                        
-              /> 
-              </a>            
-            </>                                      
+              <div className='contenedor'>
+                <QuickPicksContenedor
+                      img={audio_clip.channel.urls.logo_image.original}
+                      titulo={audio_clip.title.slice(0, 14)+'...'}
+                      artista={description_ab.slice(0, 21)+'...'}                        
+                />
+             {reproducir? (tituloContexto === audio_clip.title?
+          (<div className="overlay">
+            <img
+                
+                src= "https://images2.imgbox.com/49/02/pSDOPEuz_o.png"
+                alt="Pause"
+                width={77}
+                height={77}
+            />
+            </div>) : 
+            <div className="overlay">
+              <img
+          
+                src= "https://images2.imgbox.com/df/cc/v6OqPTZp_o.png"
+                alt="Play"
+                width={77}
+                height={77}
+              />
+            </div>) 
+           : (
+            <div className="overlay">
+                        <img
+                            
+                            src= "https://images2.imgbox.com/df/cc/v6OqPTZp_o.png"
+                            alt="Play"
+                            width={77}
+                            height={77}
+                        />
+             </div>)  }
+              </div>
+                
+                </a>               
+            </>                                     
             );             
           })}        
         </div>
@@ -138,23 +252,80 @@ type AudioClip = {
             <a href="#"
             className='contenedor'
             onClick={() => {
-              /*alert(audio_clip.urls.high_mp3)*/              
-              audioContext?.changeAudioState(
-                true, 
-                audio_clip.urls.high_mp3,
-                audio_clip.channel.urls.logo_image.original,
-                audio_clip.title,
-                description_ab,
-                true, 
-                false
-              );              
+              if(reproducir) {
+                if(tituloContexto === audio_clip.title){
+                  audioContext?.changeAudioState(
+                  false, 
+                  audio_clip.urls.high_mp3,
+                  audio_clip.channel.urls.logo_image.original,
+                  audio_clip.title,
+                  description_ab,
+                  true, 
+                  false
+                );
+                } else {
+                  audioContext?.changeAudioState(
+                    true, 
+                    audio_clip.urls.high_mp3,
+                    audio_clip.channel.urls.logo_image.original,
+                    audio_clip.title,
+                    description_ab,
+                    true, 
+                    false
+                  );
+                }
+                
+              } else {
+                audioContext?.changeAudioState(
+              true, 
+              audio_clip.urls.high_mp3,
+              audio_clip.channel.urls.logo_image.original,
+              audio_clip.title,
+              description_ab,
+              true, 
+              false
+            );
+              }              
             }}
             >
-               <QuickPicksContenedor
+              <div className='contenedor'>
+                <QuickPicksContenedor
                       img={audio_clip.channel.urls.logo_image.original}
                       titulo={audio_clip.title.slice(0, 14)+'...'}
                       artista={description_ab.slice(0, 21)+'...'}                        
-                  /> </a>               
+                />
+             {reproducir? (tituloContexto === audio_clip.title?
+          (<div className="overlay">
+            <img
+                
+                src= "https://images2.imgbox.com/49/02/pSDOPEuz_o.png"
+                alt="Pause"
+                width={77}
+                height={77}
+            />
+            </div>) : 
+            <div className="overlay">
+              <img
+          
+                src= "https://images2.imgbox.com/df/cc/v6OqPTZp_o.png"
+                alt="Play"
+                width={77}
+                height={77}
+              />
+            </div>) 
+           : (
+            <div className="overlay">
+                        <img
+                            
+                            src= "https://images2.imgbox.com/df/cc/v6OqPTZp_o.png"
+                            alt="Play"
+                            width={77}
+                            height={77}
+                        />
+             </div>)  }
+              </div>
+                
+                </a>               
             </>                                       
             );             
           })}        

@@ -11,6 +11,8 @@ export default function PeticionRecomendedAlbums() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState('');
   const audioContext = useContext(AudioContext);
+  const reproducir = (audioContext?.reproducir ? true : false);
+  const tituloContexto = (audioContext?.titulo ? audioContext.titulo : "Listen Again");
 
 
   /*const ellipsis = (str: string, num: number = str.length, ellipsisStr = "...") =>
@@ -70,29 +72,92 @@ type AudioClip = {
       {audio_clips.slice(5,9).map((audio_clip: AudioClip) => {   
            const description_ab = audio_clip.description ? audio_clip.description : audio_clip.title;      
        return(
-         <>
-            <a href="#"
-            className='contenedor'
-            onClick={() => {
-              /*alert(audio_clip.urls.high_mp3)*/              
-              audioContext?.changeAudioState(
-                true, 
-                audio_clip.urls.high_mp3,
-                audio_clip.channel.urls.logo_image.original,
-                audio_clip.title,
-                description_ab,
-                true, 
-                false
-              );              
-            }}
-            >
-              <ElementosContainer img={audio_clip.channel.urls.logo_image.original}>
-                  <DetallesItem cancion={audio_clip.title.slice(0, 14)+'...'} />              
-                  <DetallesItem content={description_ab.slice(0, 21)+'...'} /> 
-              </ElementosContainer>
-            </a>
-            
-         </>
+        <>
+        
+        <a href="#" className='contenedor'
+           onClick={
+             () => {
+               if(reproducir) {
+                 if(tituloContexto === audio_clip.title){
+                   audioContext?.changeAudioState(
+                   false, 
+                   audio_clip.urls.high_mp3,
+                   audio_clip.channel.urls.logo_image.original,
+                   audio_clip.title,
+                   description_ab,
+                   true, 
+                   false
+                 );
+                 } else {
+                   audioContext?.changeAudioState(
+                     true, 
+                     audio_clip.urls.high_mp3,
+                     audio_clip.channel.urls.logo_image.original,
+                     audio_clip.title,
+                     description_ab,
+                     true, 
+                     false
+                   );
+                 }
+                 
+               } else {
+                 audioContext?.changeAudioState(
+               true, 
+               audio_clip.urls.high_mp3,
+               audio_clip.channel.urls.logo_image.original,
+               audio_clip.title,
+               description_ab,
+               true, 
+               false
+             );
+               }
+             
+                   
+             
+
+             {isLoaded? null : null}
+             {error? null : null}
+           }}
+       >
+         <div className='contenedor'>
+           <ElementosContainer img={audio_clip.channel.urls.logo_image.original}>
+             <DetallesItem cancion={audio_clip.title.slice(0, 14)+'...'} />              
+             <DetallesItem content={description_ab.slice(0, 21)+'...'} /> 
+           </ElementosContainer>
+         {reproducir? (tituloContexto === audio_clip.title?
+         (<div className="overlay">
+           <img
+               
+               src= "https://images2.imgbox.com/49/02/pSDOPEuz_o.png"
+               alt="Pause"
+               width={170}
+               height={140}
+           />
+           </div>) : 
+           <div className="overlay">
+             <img
+         
+               src= "https://images2.imgbox.com/df/cc/v6OqPTZp_o.png"
+               alt="Play"
+               width={170}
+               height={140}
+             />
+           </div>) 
+          : (
+           <div className="overlay">
+                       <img
+                           
+                           src= "https://images2.imgbox.com/df/cc/v6OqPTZp_o.png"
+                           alt="Play"
+                           width={170}
+                           height={140}
+                       />
+            </div>)  }
+       </div>
+                  
+       </a>
+       
+       </>
             
           
             
